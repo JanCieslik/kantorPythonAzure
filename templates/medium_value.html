@@ -1,0 +1,35 @@
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Min/Max kurs</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h1 class="mb-4">Sprawdź minimalny i maksymalny kurs waluty</h1>
+    <form method="POST" action="/medium_value" class="mb-3">
+        <div class="mb-3">
+            <label for="currency" class="form-label">Kod waluty (np. USD, EUR)</label>
+            <input type="text" class="form-control" name="currency" id="currency" required>
+        </div>
+        <div class="mb-3">
+            <label for="dateFrom" class="form-label">Data początkowa (YYYY-MM-DD)</label>
+            <input type="date" class="form-control" name="dateFrom" id="dateFrom" required>
+        </div>
+        <div class="mb-3">
+            <label for="dateTo" class="form-label">Data końcowa (YYYY-MM-DD)</label>
+            <input type="date" class="form-control" name="dateTo" id="dateTo" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Sprawdź</button>
+    </form>
+
+    {% if min_rate is defined and max_rate is defined %}
+        <div class="alert alert-info">
+            Waluta: <strong>{{ currency }}</strong><br>
+            Minimalny kurs: <strong>{{ min_rate }}</strong><br>
+            Maksymalny kurs: <strong>{{ max_rate }}</strong>
+        </div>
+    {% endif %}
+
+    <a href="/" class="btn btn-link mt-3">Powrót do strony głównej</a>
+</body>
+</html>
